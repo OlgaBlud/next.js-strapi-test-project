@@ -3,6 +3,7 @@ import { fetchAPI } from "../utils/fetch-api";
 import qs from "qs";
 const BASE_URL = getStrapiURL();
 
+// home page query
 const homePageQuery = qs.stringify({
   populate: {
     blocks: {
@@ -42,6 +43,7 @@ export async function getHomePageData() {
   return await fetchAPI(url.href, { method: "GET" });
 }
 
+// page by slug query
 const pageBySlugQuery = (slug: string) =>
   qs.stringify({
     filters: {
@@ -84,5 +86,29 @@ export async function getPageBySlug(slug: string) {
   const path = "/api/pages";
   const url = new URL(path, BASE_URL);
   url.search = pageBySlugQuery(slug);
+  return await fetchAPI(url.href, { method: "GET" });
+}
+// global settings query
+const globalSettingsQuery = qs.stringify({
+  populate: {
+    header: {
+      populate: {
+        logo: {
+          populate: {
+            image: {
+              fields: ["url", "alternativeText"],
+            },
+          },
+        },
+        navigation: true,
+        cta: true,
+      },
+    },
+  },
+});
+export async function getGlobalSettings() {
+  const path = "/api/global";
+  const url = new URL(path, BASE_URL);
+  url.search = globalSettingsQuery;
   return await fetchAPI(url.href, { method: "GET" });
 }
