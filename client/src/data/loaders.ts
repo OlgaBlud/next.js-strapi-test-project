@@ -104,6 +104,20 @@ const globalSettingsQuery = qs.stringify({
         cta: true,
       },
     },
+
+    footer: {
+      populate: {
+        logo: {
+          populate: {
+            image: {
+              fields: ["url", "alternativeText"],
+            },
+          },
+        },
+        navigation: true,
+        policies: true,
+      },
+    },
   },
 });
 export async function getGlobalSettings() {

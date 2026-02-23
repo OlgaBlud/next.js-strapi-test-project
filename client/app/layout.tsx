@@ -4,8 +4,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 // import "./globals.css";
 import "../src/sass/main.scss";
-import { Header } from "@/src/components/layout/Header";
 import { getGlobalSettings } from "@/src/data/loaders";
+import { Header } from "@/src/components/layout/Header";
+import { Footer } from "@/src/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,18 +25,21 @@ export const metadata: Metadata = {
 
 async function loader() {
   const { data } = await getGlobalSettings();
+  // console.dir(data, { depth: null });
 
   if (!data) {
     throw new Error("Failed to fetch global settings");
   }
-  return { header: data?.header };
+  return { header: data?.header, footer: data?.footer };
 }
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { header } = await loader();
+  const { header, footer } = await loader();
+  // console.dir(header, { depth: null });
+  // console.dir(footer, { depth: null });
   return (
     <html lang="en">
       <body
@@ -43,6 +47,7 @@ export default async function RootLayout({
       >
         <Header data={header} />
         {children}
+        <Footer data={footer} />
       </body>
     </html>
   );
