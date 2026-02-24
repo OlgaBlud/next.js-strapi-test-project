@@ -138,11 +138,12 @@ export async function getGlobalSettings() {
   return await fetchAPI(url.href, { method: "GET" });
 }
 
-export async function getContent(path: string) {
+export async function getContent(path: string, featured?: boolean) {
   const url = new URL(path, BASE_URL);
 
   url.search = qs.stringify({
     sort: ["createdAt:desc"],
+    filters: { ...(featured && { featured: { $eq: featured } }) },
     populate: {
       image: {
         fields: ["url", "alternativeText"],
