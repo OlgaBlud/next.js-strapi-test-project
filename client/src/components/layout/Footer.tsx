@@ -15,7 +15,7 @@ export function Footer({ data }: FooterProps) {
   if (!data) return null;
 
   const { logo, navigation, policies, copy } = data;
-  console.log(logo);
+
   return (
     <footer className="footer">
       <nav className="footer__nav">

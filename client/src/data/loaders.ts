@@ -77,6 +77,17 @@ const pageBySlugQuery = (slug: string) =>
               cta: true,
             },
           },
+          "blocks.featured-article": {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText"],
+              },
+              link: true,
+            },
+          },
+          "blocks.subscribe": {
+            populate: true,
+          },
         },
       },
     },
@@ -88,7 +99,7 @@ export async function getPageBySlug(slug: string) {
   url.search = pageBySlugQuery(slug);
   return await fetchAPI(url.href, { method: "GET" });
 }
-// global settings query
+// global settings query footer and header data
 const globalSettingsQuery = qs.stringify({
   populate: {
     header: {
