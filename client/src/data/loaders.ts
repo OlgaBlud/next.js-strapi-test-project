@@ -1,7 +1,10 @@
 import { getStrapiURL } from "../utils/get-strapi-url";
 import { fetchAPI } from "../utils/fetch-api";
 import qs from "qs";
+import { parse } from "path";
+
 const BASE_URL = getStrapiURL();
+const POSTS_PER_PAGE = 3; // Number of articles per page for pagination
 
 // home page query
 const homePageQuery = qs.stringify({
@@ -138,12 +141,27 @@ export async function getGlobalSettings() {
   return await fetchAPI(url.href, { method: "GET" });
 }
 
-export async function getContent(path: string, featured?: boolean) {
+export async function getContent(
+  path: string,
+  featured?: boolean,
+  query?: string,
+  page?: string,
+) {
   const url = new URL(path, BASE_URL);
 
   url.search = qs.stringify({
     sort: ["createdAt:desc"],
-    filters: { ...(featured && { featured: { $eq: featured } }) },
+    filters: {
+      $or: [
+        { title: { $containsi: query } },
+        { description: { $containsi: query } },
+      ],
+      ...(featured && { featured: { $eq: featured } }),
+    },
+    pagination: {
+      pageSize: POSTS_PER_PAGE,
+      page: parseInt(page || "1"),
+    },
     populate: {
       image: {
         fields: ["url", "alternativeText"],
