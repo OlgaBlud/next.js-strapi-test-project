@@ -1,0 +1,68 @@
+.signup-form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6rem;
+}
+.signup-form__headline {
+  margin-bottom: 3rem;
+}
+.signup-form__info {
+  width: 49%;
+}
+.signup-form__info .copy:not(:last-of-type) {
+  margin-bottom: 1.6rem;
+}
+.signup-form__form {
+  width: 45%;
+}
+.signup-form__form .input {
+  width: 100%;
+}
+.signup-form__form .input__container {
+  margin-bottom: 4rem;
+}
+.signup-form__form .btn {
+  margin-top: 2rem;
+}
+.signup-form__name-container {
+  display: flex;
+  justify-content: space-between;
+}
+.signup-form__name-container .input__container {
+  width: 48%;
+}
+.signup-form__error {
+  color: rgb(120, 2, 2);
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 1.6rem;
+}
+.signup-form__success {
+  color: rgb(2, 120, 2);
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 1.6rem;
+}
+.signup-form__image {
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 400px;
+  width: 100%;
+}
+.signup-form__price {
+  font-size: 2.4rem;
+  margin-top: 1.6rem;
+}
+.signup-form__price span {
+  font-weight: 700;
+}
+.signup-form__date {
+  font-size: 2.4rem;
+}
+.signup-form__date span {
+  font-weight: 700;
+}/*# sourceMappingURL=signup-form.css.map */

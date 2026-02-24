@@ -72,3 +72,16 @@ export interface SubscribeProps extends Base<"blocks.subscribe"> {
   placeholder: string;
   buttonText: string;
 }
+
+export type FormStateType = {
+  zodErrors: {
+    email?: {
+      errors: string[];
+    };
+  } | null;
+  strapiErrors: {
+    message?: string;
+  } | null;
+  errorMessage: string | null;
+  successMessage: string | null;
+};

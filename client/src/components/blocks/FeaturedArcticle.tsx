@@ -9,7 +9,6 @@ export function FeaturedArticle({
   excerpt,
   image,
 }: Readonly<FeaturedArticleProps>) {
-  console.log(image);
   return (
     <article className="featured-article container">
       <div className="featured-article__info">
