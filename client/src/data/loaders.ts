@@ -137,3 +137,18 @@ export async function getGlobalSettings() {
   url.search = globalSettingsQuery;
   return await fetchAPI(url.href, { method: "GET" });
 }
+
+export async function getContent(path: string) {
+  const url = new URL(path, BASE_URL);
+
+  url.search = qs.stringify({
+    sort: ["createdAt:desc"],
+    populate: {
+      image: {
+        fields: ["url", "alternativeText"],
+      },
+    },
+  });
+
+  return fetchAPI(url.href, { method: "GET" });
+}

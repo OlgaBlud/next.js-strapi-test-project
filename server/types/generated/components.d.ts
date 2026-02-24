@@ -13,6 +13,27 @@ export interface BlocksFeaturedArticle extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksFullImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_full_images';
+  info: {
+    displayName: 'Full Image';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface BlocksHeading extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_headings';
+  info: {
+    displayName: 'Heading';
+  };
+  attributes: {
+    linkId: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksHeroSection extends Struct.ComponentSchema {
   collectionName: 'components_blocks_hero_sections';
   info: {
@@ -39,6 +60,30 @@ export interface BlocksInfoBlock extends Struct.ComponentSchema {
     isReversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     theme: Schema.Attribute.Enumeration<['turquoise', 'orange']>;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface BlocksParagraph extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_paragraph_s';
+  info: {
+    displayName: 'Paragraph ';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksParagraphWithImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_paragraph_with_images';
+  info: {
+    displayName: 'Paragraph With Image';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    image: Schema.Attribute.Media<'images'>;
+    isImageLandscape: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    isReversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
   };
 }
 
@@ -107,8 +152,12 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.featured-article': BlocksFeaturedArticle;
+      'blocks.full-image': BlocksFullImage;
+      'blocks.heading': BlocksHeading;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.info-block': BlocksInfoBlock;
+      'blocks.paragraph': BlocksParagraph;
+      'blocks.paragraph-with-image': BlocksParagraphWithImage;
       'blocks.subscribe': BlocksSubscribe;
       'elements.link': ElementsLink;
       'elements.logo': ElementsLogo;

@@ -19,8 +19,8 @@ export async function subscribeAction(
   const validatedFields = subscribeSchema.safeParse({ email });
   if (!validatedFields.success) {
     const tree = z.treeifyError(validatedFields.error);
-    console.log("❌❌❌ Validation failed:");
-    console.dir(tree, { depth: null });
+    // console.log("❌❌❌ Validation failed:");
+    // console.dir(tree, { depth: null });
     // console.dir(validatedFields.error.flatten().fieldErrors, { depth: null });
     return {
       ...prevState,

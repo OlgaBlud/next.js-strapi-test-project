@@ -24,8 +24,8 @@ export function Subscribe({
   console.log(formState, "this is our form state coming from useActionState");
   const zodErrors = formState?.zodErrors?.email?.errors[0];
   const strapiErrors = formState?.strapiErrors?.message;
-  console.log(zodErrors, "these are our zod errors");
-  console.log(strapiErrors, "these are our strapi errors");
+  // console.log(zodErrors, "these are our zod errors");
+  // console.log(strapiErrors, "these are our strapi errors");
   const errorMessage = strapiErrors || zodErrors || formState?.errorMessage;
   const successMessage = formState?.successMessage;
   return (
