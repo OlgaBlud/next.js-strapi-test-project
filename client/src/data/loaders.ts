@@ -1,7 +1,6 @@
 import { getStrapiURL } from "../utils/get-strapi-url";
 import { fetchAPI } from "../utils/fetch-api";
 import qs from "qs";
-import { parse } from "path";
 
 const BASE_URL = getStrapiURL();
 const POSTS_PER_PAGE = 3; // Number of articles per page for pagination
@@ -166,6 +165,86 @@ export async function getContent(
       image: {
         fields: ["url", "alternativeText"],
       },
+    },
+  });
+
+  return fetchAPI(url.href, { method: "GET" });
+}
+// getContentBySlug for blog posts with dynamic blocks
+const blogPopulate = {
+  blocks: {
+    on: {
+      "blocks.hero-section": {
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+          logo: {
+            populate: {
+              image: {
+                fields: ["url", "alternativeText"],
+              },
+            },
+          },
+          cta: true,
+        },
+      },
+      "blocks.info-block": {
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+          cta: true,
+        },
+      },
+      "blocks.featured-article": {
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+          link: true,
+        },
+      },
+      "blocks.subscribe": {
+        populate: true,
+      },
+      "blocks.heading": {
+        populate: true,
+      },
+      "blocks.paragraph-with-image": {
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+        },
+      },
+      "blocks.paragraph": {
+        populate: true,
+      },
+      "blocks.full-image": {
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+        },
+      },
+    },
+  },
+};
+
+export async function getContentBySlug(slug: string, path: string) {
+  const url = new URL(path, BASE_URL);
+  url.search = qs.stringify({
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+    populate: {
+      image: {
+        fields: ["url", "alternativeText"],
+      },
+      ...blogPopulate,
     },
   });
 
