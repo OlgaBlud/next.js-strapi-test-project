@@ -2,6 +2,7 @@ import { FullImageProps } from "@/src/types";
 import { StrapiImage } from "../common/StrapiImage";
 
 export function FullImage({ image }: Readonly<FullImageProps>) {
+  // console.log("🎾🎾🎾🎾🎾🎾🎾", image.url);
   return (
     <div className="article-image">
       <StrapiImage

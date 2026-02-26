@@ -57,7 +57,7 @@ export default async function SingleBlogRoute({ params }: PageProps) {
   const slug = (await params).slug;
   const { article, blocks } = await loader(slug);
   const { title, author, publishedAt, description, image } = article;
-  console.dir(blocks, { depth: null });
+  // console.dir(blocks, { depth: null });
   const tableOfContents = blocks?.filter(
     (block: Block) => block.__component === "blocks.heading",
   );

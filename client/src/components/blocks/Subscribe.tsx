@@ -1,10 +1,10 @@
 "use client";
 
 import { subscribeAction } from "@/src/data/actions";
-import { FormStateType, SubscribeProps } from "@/src/types";
+import { SubscribeFormStateType, SubscribeProps } from "@/src/types";
 import { useActionState } from "react";
 
-const INITIAL_FORM_STATE: FormStateType = {
+const INITIAL_FORM_STATE: SubscribeFormStateType = {
   zodErrors: null,
   strapiErrors: null,
   errorMessage: null,
@@ -17,11 +17,11 @@ export function Subscribe({
   placeholder,
   buttonText,
 }: Readonly<SubscribeProps>) {
-  const [formState, formAction] = useActionState<FormStateType, FormData>(
-    subscribeAction,
-    INITIAL_FORM_STATE,
-  );
-  console.log(formState, "this is our form state coming from useActionState");
+  const [formState, formAction] = useActionState<
+    SubscribeFormStateType,
+    FormData
+  >(subscribeAction, INITIAL_FORM_STATE);
+  // console.log(formState, "this is our form state coming from useActionState");
   const zodErrors = formState?.zodErrors?.email?.errors[0];
   const strapiErrors = formState?.strapiErrors?.message;
   // console.log(zodErrors, "these are our zod errors");

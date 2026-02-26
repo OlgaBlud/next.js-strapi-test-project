@@ -18,7 +18,7 @@ export function formatDate(dateString: string): string {
 
     return formatter.format(date);
   } catch (error) {
-    console.error(`Error formatting date: ${dateString}`, error);
+    console.error(`❌❌❌ Error formatting date: ${dateString}`, error);
     return "Invalid date";
   }
 }

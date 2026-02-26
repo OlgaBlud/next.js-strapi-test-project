@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "http",
         hostname: "localhost",
-
         port: "1337",
         // pathname: "/uploads/**/*",
         pathname: "/uploads/**",
@@ -17,13 +16,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-// images: {
-//     remotePatterns: [
-//       {
-//         protocol: "http",
-//         hostname: "localhost",
-//         port: "1337",
-//         pathname: "/uploads/**",
-//       },
-//     ],
-//   },

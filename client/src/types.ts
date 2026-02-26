@@ -81,7 +81,7 @@ export interface SubscribeProps extends Base<"blocks.subscribe"> {
   buttonText: string;
 }
 
-export type FormStateType = {
+export type SubscribeFormStateType = {
   zodErrors: {
     email?: {
       errors: string[];
@@ -93,6 +93,25 @@ export type FormStateType = {
   errorMessage: string | null;
   successMessage: string | null;
 };
+
+export type EventsFormStateType = {
+  // zodErrors: {
+  //   email?: {
+  //     errors: string[];
+  //   };
+  // } | null;
+  // strapiErrors: {
+  //   message?: string;
+  // } | null;
+  // errorMessage: string | null;
+  // successMessage: string | null;
+  zodErrors: null;
+  strapiErrors: null;
+  errorMessage: null;
+  successMessage: null;
+  formData: null;
+};
+
 export interface ArticleProps {
   id: number;
   documentId: string;
@@ -127,4 +146,19 @@ export interface FullImageProps extends Base<"blocks.full-image"> {
   id: number;
   __component: "blocks.full-image";
   image: ImageProps;
+}
+export interface EventProps {
+  id: number;
+  documentId: string;
+  title: string;
+  description: string;
+  slug: string;
+  image: ImageProps;
+  author: string;
+  featured: boolean;
+  price: string;
+  startDate: string;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
 }

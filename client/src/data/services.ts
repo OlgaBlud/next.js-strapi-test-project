@@ -18,16 +18,35 @@ export async function subscribeService(email: string) {
 
     return response.json();
   } catch (error) {
-    console.error("Subscribe Service Error:", error);
+    console.error("❌❌❌ Subscribe Service Error:", error);
   }
 }
 
+// Events Subscribe Service
 export interface EventsSubscribeProps {
   firstName: string;
   lastName: string;
   email: string;
-  telephone: string;
+  phone: string;
   event: {
     connect: [string];
   };
+}
+
+export async function eventsSubscribeService(data: EventsSubscribeProps) {
+  const url = new URL("/api/event-sign-ups", BASE_URL);
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: { ...data } }),
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("❌❌❌ Events Subscribe Service Error:", error);
+  }
 }

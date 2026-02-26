@@ -36,7 +36,7 @@ export async function fetchAPI(url: string, options: FetchAPIOptions) {
       return { status: response.status, statusText: response.statusText };
     }
   } catch (error) {
-    console.error(`Error ${method} data:`, error);
+    console.error(`❌❌❌ Error ${method} data:`, error);
     throw error;
   }
 }

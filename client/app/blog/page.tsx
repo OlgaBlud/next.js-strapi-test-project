@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 async function loader(slug: string) {
   const { data } = await getPageBySlug(slug);
   if (data.length === 0) notFound();
+  // console.log("🪀🥏🏐data", data);
   return { blocks: data[0]?.blocks };
 }
 
