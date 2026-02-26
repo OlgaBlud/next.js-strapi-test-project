@@ -6,7 +6,7 @@ import {
   subscribeService,
 } from "./services";
 
-import { EventsFormStateType, SubscribeFormStateType } from "../types";
+import { EventsSubscribeState, SubscribeFormStateType } from "../types";
 
 const subscribeSchema = z.object({
   email: z.email({
@@ -86,23 +86,27 @@ const eventsSubscribeSchema = z.object({
 });
 
 export async function eventsSubscribeAction(
-  prevState: any,
+  prevState: EventsSubscribeState,
   formData: FormData,
-) {
+): Promise<EventsSubscribeState> {
+  // export async function eventsSubscribeAction(
+  //   prevState: any,
+  //   formData: FormData,
+  // ) {
   const formDataObject = {
-    firstName: formData.get("firstName"),
-    lastName: formData.get("lastName"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    eventId: formData.get("eventId"),
+    firstName: formData.get("firstName") as string,
+    lastName: formData.get("lastName") as string,
+    email: formData.get("email") as string,
+    phone: formData.get("phone") as string,
+    eventId: formData.get("eventId") as string,
   };
 
   const validatedFields = eventsSubscribeSchema.safeParse(formDataObject);
-
   if (!validatedFields.success) {
+    const flattenedErrors = z.flattenError(validatedFields.error);
     return {
       ...prevState,
-      zodErrors: validatedFields.error.flatten().fieldErrors,
+      zodErrors: flattenedErrors.fieldErrors,
       strapiErrors: null,
       formData: {
         ...formDataObject,

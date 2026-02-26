@@ -93,23 +93,24 @@ export type SubscribeFormStateType = {
   errorMessage: string | null;
   successMessage: string | null;
 };
-
-export type EventsFormStateType = {
-  // zodErrors: {
-  //   email?: {
-  //     errors: string[];
-  //   };
-  // } | null;
-  // strapiErrors: {
-  //   message?: string;
-  // } | null;
-  // errorMessage: string | null;
-  // successMessage: string | null;
-  zodErrors: null;
-  strapiErrors: null;
-  errorMessage: null;
-  successMessage: null;
-  formData: null;
+type FieldErrors = {
+  firstName?: string[];
+  lastName?: string[];
+  email?: string[];
+  phone?: string[];
+};
+export type EventsSubscribeState = {
+  zodErrors: FieldErrors | null;
+  strapiErrors: { message?: string } | null;
+  errorMessage: string | null;
+  successMessage: string | null;
+  formData: {
+    firstName?: string | null;
+    lastName?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    eventId?: string | null;
+  } | null;
 };
 
 export interface ArticleProps {

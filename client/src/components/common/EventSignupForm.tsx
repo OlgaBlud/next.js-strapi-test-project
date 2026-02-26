@@ -2,13 +2,13 @@
 
 import { formatDate } from "@/src/utils/formate-date";
 import { BlockRenderer } from "./BlockRenderer";
-import { Block } from "@/src/types";
+import { Block, EventsSubscribeState } from "@/src/types";
 import { StrapiImage } from "./StrapiImage";
 import { SubmitButton } from "./SubmitButton";
 import { useActionState } from "react";
 import { eventsSubscribeAction } from "@/src/data/actions";
 
-const INITIAL_STATE = {
+const INITIAL_STATE: EventsSubscribeState = {
   zodErrors: null,
   strapiErrors: null,
   errorMessage: null,
@@ -97,6 +97,7 @@ export function EventSignupForm({
             height={200}
             width={200}
             className="signup-form__image"
+            unoptimized
           />
         )}
         <div className="signup-form__name-container">
@@ -104,14 +105,14 @@ export function EventSignupForm({
             id="firstName"
             label="First Name"
             name="firstName"
-            error={zodErrors?.firstName}
+            error={zodErrors?.firstName?.[0]}
             defaultValue={formState?.formData?.firstName ?? ""}
           />
           <TextInput
             id="lastName"
             label="Last Name"
             name="lastName"
-            error={zodErrors?.lastName}
+            error={zodErrors?.lastName?.[0]}
             defaultValue={formState?.formData?.lastName ?? ""}
           />
         </div>
@@ -120,7 +121,7 @@ export function EventSignupForm({
           label="Email"
           name="email"
           type="email"
-          error={zodErrors?.email}
+          error={zodErrors?.email?.[0]}
           defaultValue={formState?.formData?.email ?? ""}
         />
         <TextInput
@@ -128,7 +129,7 @@ export function EventSignupForm({
           label="Phone"
           name="phone"
           type="text"
-          error={zodErrors?.phone}
+          error={zodErrors?.phone?.[0]}
           defaultValue={formState?.formData?.phone ?? ""}
         />
         <input hidden type="text" name="eventId" defaultValue={eventId} />
